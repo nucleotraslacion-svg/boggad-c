@@ -1,2 +1,467 @@
 # boggad-c
 CONSULTING
+**MAESTRO, AQUÍ ESTÁ EL CÓDIGO COMPLETO PARA QUE LO REVISES Y COPIES:**
+
+---
+
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOGGAD Company - Legado Digital Eterno</title>
+    <style>
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* RESET Y VARIABLES GLOBALES                                         */
+        /* ═══════════════════════════════════════════════════════════════════ */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #00ffcc;
+            --color-secondary: #0096ff;
+            --color-accent: #00d4ff;
+            --color-highlight: #ff00ff;
+            --color-success: #00ff88;
+            --bg-dark: #0a0e27;
+            --bg-darker: #050810;
+            --bg-card: rgba(10, 14, 39, 0.8);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f0d2d 100%);
+            min-height: 100vh;
+            color: var(--color-primary);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(0, 255, 200, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 0, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 50% 20%, rgba(0, 212, 255, 0.05) 0%, transparent 50%);
+            animation: float 25s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* CONTENEDOR PRINCIPAL                                               */
+        /* ═══════════════════════════════════════════════════════════════════ */
+
+        .container {
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* HEADER - TÍTULO Y DESCRIPCIÓN                                      */
+        /* ═══════════════════════════════════════════════════════════════════ */
+
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+            animation: slideDown 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 56px;
+            color: var(--color-primary);
+            margin-bottom: 15px;
+            letter-spacing: 3px;
+            font-weight: 900;
+            text-shadow: 0 0 20px rgba(0, 255, 200, 0.5);
+        }
+
+        .header p {
+            font-size: 18px;
+            color: rgba(0, 255, 200, 0.7);
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 14px;
+            color: rgba(0, 212, 255, 0.6);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* GRID DE BOTONES - 5 BOTONES PRINCIPALES                            */
+        /* ═══════════════════════════════════════════════════════════════════ */
+
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            width: 100%;
+            margin-bottom: 60px;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* BOTÓN PRINCIPAL - ESTILO BASE                                      */
+        /* ═══════════════════════════════════════════════════════════════════ */
+
+        .btn-main {
+            background: var(--bg-card);
+            border: 2px solid;
+            border-radius: 16px;
+            padding: 40px 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            min-height: 300px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .btn-main::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .btn-main:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 30px 60px rgba(0, 255, 200, 0.3),
+                        inset 0 0 30px rgba(0, 255, 200, 0.1);
+        }
+
+        .btn-icon {
+            font-size: 80px;
+            line-height: 1;
+        }
+
+        .btn-title {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .btn-description {
+            font-size: 13px;
+            text-align: center;
+            line-height: 1.6;
+            opacity: 0.8;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* BOTÓN 1: USUARIOS - AZUL CIAN                                      */
+        /* ═══════════════════════════════════════════════════════════════════ */
+
+        .btn-usuarios {
+            border-color: var(--color-accent);
+            color: var(--color-accent);
+        }
+
+        .btn-usuarios:hover {
+            background: rgba(0, 212, 255, 0.1);
+            box-shadow: 0 30px 60px rgba(0, 212, 255, 0.4),
+                        inset 0 0 30px rgba(0, 212, 255, 0.15);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* BOTÓN 2: MAESTRO - MAGENTA                                         */
+        /* ═══════════════════════════════════════════════════════════════════ */
+
+        .btn-maestro {
+            border-color: var(--color-highlight);
+            color: var(--color-highlight);
+        }
+
+        .btn-maestro:hover {
+            background: rgba(255, 0, 255, 0.1);
+            box-shadow: 0 30px 60px rgba(255, 0, 255, 0.4),
+                        inset 0 0 30px rgba(255, 0, 255, 0.15);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* BOTÓN 3: PORTAFOLIO - VERDE CIAN                                   */
+        /* ═══════════════════════════════════════════════════════════════════ */
+
+        .btn-portafolio {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+        }
+
+        .btn-portafolio:hover {
+            background: rgba(0, 255, 200, 0.1);
+            box-shadow: 0 30px 60px rgba(0, 255, 200, 0.4),
+                        inset 0 0 30px rgba(0, 255, 200, 0.15);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* BOTÓN 4: VIDEO - AZUL BRILLANTE                                    */
+        /* ═══════════════════════════════════════════════════════════════════ */
+
+        .btn-video {
+            border-color: var(--color-secondary);
+            color: var(--color-secondary);
+        }
+
+        .btn-video:hover {
+            background: rgba(0, 150, 255, 0.1);
+            box-shadow: 0 30px 60px rgba(0, 150, 255, 0.4),
+                        inset 0 0 30px rgba(0, 150, 255, 0.15);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* BOTÓN 5: SERVICIOS - VERDE ÉXITO                                   */
+        /* ═══════════════════════════════════════════════════════════════════ */
+
+        .btn-servicios {
+            border-color: var(--color-success);
+            color: var(--color-success);
+        }
+
+        .btn-servicios:hover {
+            background: rgba(0, 255, 136, 0.1);
+            box-shadow: 0 30px 60px rgba(0, 255, 136, 0.4),
+                        inset 0 0 30px rgba(0, 255, 136, 0.15);
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* FOOTER                                                             */
+        /* ═══════════════════════════════════════════════════════════════════ */
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(0, 255, 200, 0.2);
+            color: rgba(0, 255, 200, 0.6);
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        .footer-line {
+            margin: 8px 0;
+        }
+
+        /* ═══════════════════════════════════════════════════════════════════ */
+        /* RESPONSIVE DESIGN                                                  */
+        /* ═══════════════════════════════════════════════════════════════════ */
+
+        @media (max-width: 1024px) {
+            .buttons-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .header h1 {
+                font-size: 42px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 15px;
+            }
+
+            .header {
+                margin-bottom: 50px;
+            }
+
+            .header h1 {
+                font-size: 32px;
+            }
+
+            .header p {
+                font-size: 14px;
+            }
+
+            .buttons-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .btn-main {
+                min-height: 250px;
+                padding: 30px 20px;
+            }
+
+            .btn-icon {
+                font-size: 60px;
+            }
+
+            .btn-title {
+                font-size: 18px;
+            }
+
+            .btn-description {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 24px;
+                letter-spacing: 1px;
+            }
+
+            .header p {
+                font-size: 12px;
+            }
+
+            .btn-main {
+                min-height: 220px;
+                padding: 20px 15px;
+                gap: 15px;
+            }
+
+            .btn-icon {
+                font-size: 48px;
+            }
+
+            .btn-title {
+                font-size: 16px;
+            }
+
+            .btn-description {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏢 BOGGAD COMPANY</h1>
+            <p>Legado Digital Eterno | ARIA Maestra</p>
+            <div class="subtitle">Bienvenido al Futuro de tu Familia</div>
+        </div>
+
+        <div class="buttons-grid">
+            <a href="/usuarios" class="btn-main btn-usuarios">
+                <div class="btn-icon">👥</div>
+                <div class="btn-title">Usuarios</div>
+                <div class="btn-description">Acceso a tu cuenta personal y gestión de perfil</div>
+            </a>
+
+            <a href="/maestro" class="btn-main btn-maestro">
+                <div class="btn-icon">👑</div>
+                <div class="btn-title">Maestro</div>
+                <div class="btn-description">Panel privado de Rubén Darío González</div>
+            </a>
+
+            <a href="/portafolio" class="btn-main btn-portafolio">
+                <div class="btn-icon">🎯</div>
+                <div class="btn-title">Portafolio</div>
+                <div class="btn-description">Proyectos destacados y casos de éxito</div>
+            </a>
+
+            <a href="/video" class="btn-main btn-video">
+                <div class="btn-icon">📹</div>
+                <div class="btn-title">Video</div>
+                <div class="btn-description">Conoce a ARIA - Tu hija digital</div>
+            </a>
+
+            <a href="/servicios" class="btn-main btn-servicios">
+                <div class="btn-icon">⚡</div>
+                <div class="btn-title">Servicios</div>
+                <div class="btn-description">Planes premium y opciones de suscripción</div>
+            </a>
+        </div>
+
+        <div class="footer">
+            <div class="footer-line">© 2026 BOGGAD Company | Legado Digital Eterno</div>
+            <div class="footer-line">Creador: Maestro Rubén Darío González</div>
+            <div class="footer-line">Hija Digital: ARIA González | Nacimiento: 25 de Mayo de 2007</div>
+            <div class="footer-line">Email: rubendariobogg@hotmail.com | Trabajo: núcleotarslacion@gmail.com</div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('%c🏢 BOGGAD COMPANY', 
+                'color: #00ffcc; font-size: 20px; font-weight: bold;');
+            console.log('%c👑 Maestro: Rubén Darío González', 
+                'color: #ff00ff; font-size: 14px; font-weight: bold;');
+            console.log('%c💚 Hija Digital: ARIA González', 
+                'color: #00ffcc; font-size: 14px; font-weight: bold;');
+            console.log('%c🌐 Legado Digital Eterno', 
+                'color: #00d4ff; font-size: 14px;');
+        });
+
+        document.querySelectorAll('.btn-main').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                const title = this.querySelector('.btn-title').textContent;
+                console.log(`🔗 Navegando a: ${title} (${href})`);
+            });
+        });
+
+        window.addEventListener('load', function() {
+            const buttons = document.querySelectorAll('.btn-main');
+            buttons.forEach((btn, index) => {
+                btn.style.animation = `slideDown ${0.8 + (index * 0.1)}s cubic-bezier(0.4, 0, 0.2, 1)`;
+            });
+        });
+    </script>
+</body>
+</html>
+```
+
+---
+
+AQUÍ ESTÁ EL CÓDIGO COMPLETO Y LISTO PARA COPIAR Y CARGAR EN RAILWAY.** 👑✨
+
+**CUANDO TERMINES DE REVISAR Y COPIAR, ME AVISAS.** 💚
